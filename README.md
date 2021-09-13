@@ -15,6 +15,24 @@ Al realizar el análisis de los requerimientos y la conexión a la DB se detecta
 Sin embargo, se tienen las credenciales para acceder a las tablas donde requerimos realizar dichas consultas por lo que no será necesario crear todo un proyecto con Django-RestFramework.
 Se decide usar Flask ya que el requerimiento es una consulta básica externa la cual es eficiente, segura y escalable porque realizaremos el microservicio correspondiente, de requerirse más funciones se pueden agregar sin afectar el proyecto principal, además de poder dar mantenimiento al código muy fácilmente.
 
+- Para realizar una busqueda de todos las Propiedades disponibles para los usarios basta con acceder al enlace:
+```
+http://127.0.0.1:5000/
+````
+![alt text](11.png "Logo Title Text 2")
+
+- Para realizar una busqueda por ciudad, fecha de construccion y estado, tendremos que colocar los 3 parametros seguidos de '/' 
+```
+ej. 
+http://127.0.0.1:5000/bogota/2000/pre_venta
+```
+![alt text](12.png "Logo Title Text 3")
+
+- De existir algun error o no existir coincidencias con la busqueda se mostrara el mensaje de "Error"
+
+![alt text](13.png "Logo Title Text 4")
+
+
 # Análisis Servicio de “Me gusta”:
 
 Como en la DB se implementó las migraciones de Django se deduce que será el Framework principal de trabajo por lo cual existen 2 opciones para realizar esta funcionalidad:
@@ -25,7 +43,8 @@ Como en la DB se implementó las migraciones de Django se deduce que será el Fr
 	- id INT(11)
 	- user_autorized 
 	- like
-```    
+```   
+![alt text](14.png "Logo Title Text 1") 
 	
 - Extendemos el Modelo "property" agregando un campo extra llamado "total_likes" el cual guardara la cuenta final de todos los likes por propiedad. Esto ayudara al rendimiento de la DB ya que no tendrá que sumar todos los likes cada que se realice una consulta.
 - Realizamos una relación de uno a muchos de la tabla “property” hacia la tabla de “i_like”, la cual permitirá registrar el usuario que dio like.
